@@ -1,12 +1,13 @@
 // Consts iniciais
+
+require('dotenv').config();
+
 const { MessageFlags } = require("discord.js")
 const tmi = require("tmi.js")
 
-const channelName = "ameliebtw_"
+const channelName = "bottisco"
 
 const prefix = "!"
-
-const senha = require("./senha.json") 
 
 
 
@@ -23,7 +24,7 @@ const config = {
     },
     identity: {
         username: "Bottisco",
-        password: senha.oauth
+        password: process.env.TWITCH_OAUTH
     },
     channels: [channelName]
 }

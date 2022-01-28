@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 const { Client, Intents } = require('discord.js'); 
 
@@ -19,7 +20,7 @@ function Rep(){
     
 module.exports = Rep
 
-DiscordClient.login(configdiscord.token);
+DiscordClient.login(process.env.DISCORD_TOKEN);
 
 
 
