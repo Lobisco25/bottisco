@@ -4,7 +4,7 @@ exports.run = (client, message, args, user, channel, self) => {
 
     const Rep = require("../botdiscord.js")
 
-    const channelName = "bottisco"
+    const channelName = "ameliebtw_"
 
         
 

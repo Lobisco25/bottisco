@@ -5,7 +5,7 @@ require('dotenv').config();
 const { MessageFlags } = require("discord.js")
 const tmi = require("tmi.js")
 
-const channelName = "bottisco"
+const channelName = "ameliebtw_"
 
 const prefix = "!"
 
@@ -53,6 +53,8 @@ client.on("chat", (channel, user, message, self) => {
         client.say(channelName, "bom dia")
     }
 
+
+   
 
 
     const args = message.slice(prefix.length).trim().split(/ +/g);
