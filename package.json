@@ -7,6 +7,11 @@
   "name": "bottisco",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "npm": ">=8.1.2",
+    "node": ">=16.13.1"
+  },
+
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
