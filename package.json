@@ -5,12 +5,12 @@
     "tmi.js": "^1.8.5"
   },
   "name": "bottisco",
-  "version": "1.0.0",
-  "main": "index.js",
   "engines": {
     "npm": ">=8.1.2",
     "node": ">=16.13.1"
   },
+  "version": "1.0.0",
+  "main": "index.js",
 
   "scripts": {
     "start": "node index.js",
