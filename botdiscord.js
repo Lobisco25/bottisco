@@ -4,8 +4,6 @@ const { Client, Intents } = require('discord.js');
 
 const DiscordClient = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] }); 
 
-const configdiscord = require("./configdiscord.json");
-
 DiscordClient.on("ready", () => {
     console.log(`O bot do Discord está online`)
     });
