@@ -45,6 +45,10 @@ client.on("connected", (address, port) => {
 //Fim da Conexão
 
 
+client.on("timeout", (channel, username, reason, duration, userstate) => {
+    client.say("bottisco", `bottiscoMODS ${username} levou um timeout de ${duration}, Motivo: ${reason} bottiscoMODS`)
+})
+
 // Handler
 client.on("chat", (channel, user, message, self) => {
     if (self) return;
@@ -55,6 +59,9 @@ client.on("chat", (channel, user, message, self) => {
             client.say(channelName, `bottiscoTime @${user.username} Sua dungeon está disponivel!`)
         }, 10800000);
     }
+
+
+
 
 
 
