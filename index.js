@@ -49,8 +49,11 @@ client.on("connected", (address, port) => {
 client.on("chat", (channel, user, message, self) => {
     if (self) return;
 
-    if(message.startsWith("Bottisco")) {
-        client.say(channelName, "bom dia")
+    if(message.startsWith("%fed")) {
+        client.say(channelName, `@${user.username} Vou te informar que a sua proxima dungeon está disponivel em 3 horas!`)
+        setTimeout(function(){
+            client.say(channelName, `@${user.username} Sua dungeon está disponivel!`)
+        }, 10800000);
     }
 
 
