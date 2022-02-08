@@ -45,20 +45,33 @@ client.on("connected", (address, port) => {
 //Fim da Conexão
 
 
-client.on("timeout", (channel, username, reason, duration, userstate) => {
-    client.say("bottisco", `bottiscoMODS ${username} levou um timeout de ${duration}, Motivo: ${reason} bottiscoMODS`)
+
+client.on("raided", (channel, username, viewers) => {
+    client.followersonlyoff(channelName)
+    client.say("Bottisco", `bottiscoSearch ${username} raidou ${channel} com ${viewers} viewers bottiscoSearch`)
+    setTimeout(function(){
+        client.followersonly(channelName, 0)
+    }, 300000);
 })
 
 // Handler
 client.on("chat", (channel, user, message, self) => {
     if (self) return;
 
+
     if(message.startsWith("%fed")) {
         client.say(channelName, `bottiscoTime @${user.username} Vou te notificar que a sua dungeon está disponivel em 3 horas! `)
         setTimeout(function(){
             client.say(channelName, `bottiscoTime @${user.username} Sua dungeon está disponivel!`)
         }, 10800000);
+
+        
     }
+
+    
+
+   
+    
 
 
 
