@@ -42,6 +42,7 @@ client.on("connected", (address, port) => {
     client.ping().then(function(data) {
         let ping = Math.floor(Math.round(data*1000))
         client.say(channelName, `Check O bot está online (${ping}ms)`)
+        client.say(logsChannel, `Os logs estão online, com ${ping}ms`)
     })
 })
 
