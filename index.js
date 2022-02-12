@@ -12,7 +12,7 @@ const logsChannel = "bottisco"
 
 const prefix = "!"
 
-
+const botStart = require("./botdiscord.js")
 
 // Fim das Consts inicias
 
@@ -44,6 +44,7 @@ client.on("connected", (address, port) => {
         client.say(channelName, `Check O bot está online (${ping}ms)`)
         client.say(logsChannel, `Os logs estão online, com ${ping}ms`)
     })
+    botStart()
 })
 
 //Fim da Conexão

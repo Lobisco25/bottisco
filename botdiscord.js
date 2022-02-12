@@ -10,15 +10,17 @@ DiscordClient.on("ready", () => {
 
 
 function Rep(){
-    const channelId = DiscordClient.channels.cache.get("865793028078043139")
-    channelId.send(` https://twitch.tv/ameliebtw_ `)
+    const channelId = DiscordClient.channels.cache.get("900517905073061949")
+    channelId.send(` <@&${900566451566571562}> https://twitch.tv/ameliebtw_ entre AGORA!!!!! `)
 }
 
     
     
 module.exports = Rep
 
-DiscordClient.login(process.env.DISCORD_TOKEN);
+function botStart(){
+    DiscordClient.login(process.env.DISCORD_TOKEN);
+}
 
 
-
+module.exports = botStart
