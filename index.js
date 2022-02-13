@@ -2,6 +2,9 @@
 
 require('dotenv').config();
 
+
+
+   
 const { MessageFlags } = require("discord.js")
 const tmi = require("tmi.js");
 const { listenerCount } = require('tmi.js/lib/events');
@@ -45,6 +48,8 @@ client.on("connected", (address, port) => {
         client.say(logsChannel, `Os logs estão online, com ${ping}ms`)
     })
     botStart()
+    
+    //=> true
 })
 
 //Fim da Conexão
@@ -66,55 +71,16 @@ client.on("raided", (channel, username, viewers) => {
 
 
 
+
 // Handler
 client.on("chat", (channel, user, message, self) => {
+
     if (self) return;
 
-//%fed
-    if(message.startsWith("%fed")) {
 
-        setTimeout(function(){
-            client.say(channelName, `bottiscoTime @${user.username} Vou te notificar que a sua dungeon está disponivel em 3 horas! `)
-        }, 500)
-        setTimeout(function(){
-            client.say(channelName, `bottiscoTime @${user.username} Sua dungeon está disponivel!`)
-        }, 10800000);
-
-    }
-
-    if(message.startsWith("%fd")) {
-
-        setTimeout(function(){
-            client.say(channelName, `bottiscoTime @${user.username} Vou te notificar que a sua dungeon está disponivel em 3 horas! `)
-        }, 500)
-        setTimeout(function(){
-            client.say(channelName, `bottiscoTime @${user.username} Sua dungeon está disponivel!`)
-        }, 10800000);
-
-    }
-
-    if(message.startsWith("%ed 1")) {
-
-        setTimeout(function(){
-            client.say(channelName, `bottiscoTime @${user.username} Vou te notificar que a sua dungeon está disponivel em 3 horas! `)
-        }, 500)
-        setTimeout(function(){
-            client.say(channelName, `bottiscoTime @${user.username} Sua dungeon está disponivel!`)
-        }, 10800000);
-
-    }
-
-    if(message.startsWith("%ed 2")) {
-
-        setTimeout(function(){
-            client.say(channelName, `bottiscoTime @${user.username} Vou te notificar que a sua dungeon está disponivel em 3 horas! `)
-        }, 500)
-        setTimeout(function(){
-            client.say(channelName, `bottiscoTime @${user.username} Sua dungeon está disponivel!`)
-        }, 10800000);
-
-    }
-//fim do %fed
+     
+        
+    
 
     const args = message.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
@@ -126,7 +92,9 @@ client.on("chat", (channel, user, message, self) => {
          return;
     }
 
+
 })
+
 
 client.on("messagedeleted", (channel, username, deletedMessage, userstate) => {
     client.say(logsChannel, `pajaCmon Uma mensagem de @${username} foi deletada: "${deletedMessage}" MODS`)
