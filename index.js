@@ -4,8 +4,7 @@ require('dotenv').config();
 
 
 
-   
-const { MessageFlags } = require("discord.js")
+
 const tmi = require("tmi.js");
 const { listenerCount } = require('tmi.js/lib/events');
 
@@ -16,6 +15,8 @@ const logsChannel = "bottisco"
 const prefix = "!"
 
 const botStart = require("./botdiscord.js")
+
+
 
 // Fim das Consts inicias
 
@@ -32,7 +33,7 @@ const config = {
         username: "Bottisco",
         password: process.env.TWITCH_OAUTH
     },
-    channels: [channelName]
+    channels: [channelName, logsChannel]
 }
 
 var client = new tmi.client(config)
@@ -55,6 +56,7 @@ client.on("connected", (address, port) => {
 //Fim da Conexão
 
 
+
 //Raid Event
 client.on("raided", (channel, username, viewers) => {
     client.followersonlyoff(channelName)
@@ -68,18 +70,13 @@ client.on("raided", (channel, username, viewers) => {
 
 
 
-
-
-
+ 
 
 // Handler
 client.on("chat", (channel, user, message, self) => {
+    
 
     if (self) return;
-
-
-     
-        
     
 
     const args = message.slice(prefix.length).trim().split(/ +/g);
