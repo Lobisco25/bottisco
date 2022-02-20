@@ -2,11 +2,9 @@
 
 require('dotenv').config();
 
-
-
-
 const tmi = require("tmi.js");
 const { listenerCount } = require('tmi.js/lib/events');
+const { channel } = require('tmi.js/lib/utils');
 
 const channelName = "ameliebtw_" 
 
@@ -38,8 +36,6 @@ const config = {
 
 var client = new tmi.client(config)
 client.connect() 
-   
-
 
 
 client.on("connected", (address, port) => {
@@ -50,7 +46,6 @@ client.on("connected", (address, port) => {
     })
     botStart()
     
-    //=> true
 })
 
 //Fim da Conexão
@@ -91,8 +86,29 @@ client.on("chat", (channel, user, message, self) => {
 
 
 })
+// Fim do Handler
 
 
+
+// 7TV Event
+var EventSource = require("eventsource");
+const source = new EventSource('https://events.7tv.app/v1/channel-emotes?channel=ameliebtw_');
+source.addEventListener("update", (e) => {
+    let data = JSON.parse(e.data)
+    if(data.action == "ADD" ){
+        client.say(channelName, `@${data.actor} adicionou ${data.name} no 7TV`)
+    }
+    if(data.action == "REMOVE"){
+        client.say(channelName, `${data.actor} removeu o ${data.name} na 7TV`)
+    }
+    if(data.action == "UPDATE"){
+        client.say(channelName, `${data.actor} mudou o nome para ${data.name} na 7TV`)
+    }
+}, false);
+// Fim do 7TV event
+
+
+// Logs
 client.on("messagedeleted", (channel, username, deletedMessage, userstate) => {
     client.say(logsChannel, `pajaCmon Uma mensagem de @${username} foi deletada: "${deletedMessage}" MODS`)
 });
@@ -105,3 +121,4 @@ client.on("ban", (channel, username, reason, userstate) => {
     client.say(logsChannel, `bottiscoMODS O usuário @${username} foi banido do chat. bottiscoMODS`)
 })
 
+//Fim dos logs 
