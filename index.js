@@ -60,6 +60,20 @@ client.on("raided", (channel, username, viewers) => {
     setTimeout(function(){
         client.followersonly(channelName, 0)
     }, 300000);
+      let num = Math.random();
+    if (num < 0.02) {
+      client.say(channel, W H OMEGALUL")
+        setTimeout(function(){
+            client.say(channelName, "to zuando Hugs")
+      }, 3000)
+    } else {
+     return;
+      
+    }
+ 
+
+
+}
 })
 // Fim do Raid Event
 
