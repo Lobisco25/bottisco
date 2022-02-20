@@ -62,7 +62,7 @@ client.on("raided", (channel, username, viewers) => {
     }, 300000);
       let num = Math.random();
     if (num < 0.02) {
-      client.say(channel, W H OMEGALUL")
+      client.say(channel, "W H OMEGALUL")
         setTimeout(function(){
             client.say(channelName, "to zuando Hugs")
       }, 3000)
@@ -73,8 +73,8 @@ client.on("raided", (channel, username, viewers) => {
  
 
 
-}
 })
+
 // Fim do Raid Event
 
 
