@@ -32,7 +32,7 @@ const config = {
         username: "Bottisco",
         password: process.env.TWITCH_OAUTH
     },
-    channels: [channelName, logsChannel, "bytter_"]
+    channels: [channelName, logsChannel,]
 }
 
 var client = new tmi.client(config)
@@ -111,15 +111,22 @@ source.addEventListener("update", (e) => {
 
 // Logs
 client.on("messagedeleted", (channel, username, deletedMessage, userstate) => {
+    if (channel === channelName) { 
     client.say(logsChannel, `pajaCmon Uma mensagem de @${username} foi deletada: "${deletedMessage}" MODS`)
+    }
 });
 
 client.on("timeout", (channel, username, reason, duration, userstate, deletedMessage) => {
+    if (channel === channelName) {
     client.say(logsChannel, `peepoPolice @${username} tomou um timeout de ${duration} segundos. bottiscoMODS`)
+    }
 })
 
 client.on("ban", (channel, username, reason, userstate) => {
+    if (channel === channelName) {
     client.say(logsChannel, `bottiscoMODS O usuário @${username} foi banido do chat. bottiscoMODS`)
+    }
+    
 })
 
 //Fim dos logs 
