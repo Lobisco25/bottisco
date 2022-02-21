@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 
+const axios = require('axios')
 const tmi = require("tmi.js");
 const { listenerCount } = require('tmi.js/lib/events');
 const { channel } = require('tmi.js/lib/utils');
@@ -31,7 +32,7 @@ const config = {
         username: "Bottisco",
         password: process.env.TWITCH_OAUTH
     },
-    channels: [channelName, logsChannel]
+    channels: [channelName, logsChannel, "bytter_"]
 }
 
 var client = new tmi.client(config)
@@ -41,7 +42,7 @@ client.connect()
 client.on("connected", (address, port) => {
     client.ping().then(function(data) {
         let ping = Math.floor(Math.round(data*1000))
-        client.say(channelName, `Check O bot está online (${ping}ms)`)
+        console.log(channelName, `Check O bot está online (${ping}ms)`)
         client.say(logsChannel, `Os logs estão online, com ${ping}ms`)
     })
     botStart()
@@ -65,15 +66,14 @@ client.on("raided", (channel, username, viewers) => {
 // Fim do Raid Event
 
 
-
- 
-
 // Handler
 client.on("chat", (channel, user, message, self) => {
     
 
     if (self) return;
-    
+
+
+  
 
     const args = message.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
@@ -123,3 +123,23 @@ client.on("ban", (channel, username, reason, userstate) => {
 })
 
 //Fim dos logs 
+
+// 7TV teste Lobisco
+const source2 = new EventSource('https://events.7tv.app/v1/channel-emotes?channel=lobisco25');
+source2.addEventListener("update", (e) => {
+    let data = JSON.parse(e.data)
+    if(data.action == "ADD" ){
+        client.say(channelName, `${data.actor} está testando o evento da 7tv, pra isso ele adicionou o ${data.name}, por favor ignore FeelsOkayMan`)
+    }
+    if(data.action == "REMOVE"){
+        client.say(channelName, `${data.actor} está testando o evento da 7tv, pra isso ele tirou o ${data.name}, por favor ignore FeelsOkayMan`)
+    }
+    if(data.action == "UPDATE"){
+        client.say(channelName, `${data.actor} está testando o evento da 7tv, pra isso ele mudou algo no ${data.name}, por favor ignore FeelsOkayMan`)
+    }
+}, false);
+
+//Fim do 7TV teste Lobisco
+
+;
+
