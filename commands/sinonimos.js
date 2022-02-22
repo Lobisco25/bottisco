@@ -8,7 +8,7 @@ if(res.data[0] == undefined) {
     client.say(channel, "Não achei sinônimos para essa palavra FeelsDankMan")
 
 } else {
-    client.say(channel, `"${args[0]}":  1: ${res.data[0]} | 2: ${res.data[1]}`)
+    client.say(channel, `"📕 ${args[0]}":  bottiscoSearch 1: ${res.data[0]} bottiscoSearch | 2: ${res.data[1]}`)
 }
 
 
