@@ -10,7 +10,7 @@ exports.run = (client, message, args, user, channel, self) => {
 
 
     .then((res) => {
-if(res.status == 400 || res.status == 404) {
+if(res.status == 400) {
     client.say(channel, "Não achei sinônimos para essa palavra FeelsDankMan")
     
 
