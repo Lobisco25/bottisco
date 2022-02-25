@@ -37,16 +37,26 @@ const config = {
 
 var client = new tmi.client(config)
 client.connect() 
+var git = require('git-last-commit');
+
+git.getLastCommit(function(err, commit) {
+});
 
 
 client.on("connected", (address, port) => {
-    client.ping().then(function(data) {
-        let ping = Math.floor(Math.round(data*1000))
-        client.say(channelName, `Check O bot está online (${ping}ms)`)
-        client.say(logsChannel, `Os logs estão online, com ${ping}ms`)
-    })
-    botStart()
+
     
+    
+    client.ping().then(function(data) {
+        git.getLastCommit(function(err, commit) {
+        let ping = Math.floor(Math.round(data*1000))
+        client.say(channelName, `Check O bot está online (${ping}ms) | Update: ${commit.subject}`)
+        client.say(logsChannel, `Os logs estão online, com ${ping}ms`)
+        })
+    })
+
+    botStart()
+
 })
 
 //Fim da Conexão
