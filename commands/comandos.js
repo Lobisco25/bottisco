@@ -1,3 +1,12 @@
 exports.run = (client, message, args, user, channel, self) => { 
-    client.say(channel, "bottiscoSearch Comandos: !choice, !coin, !liveon (mods), !ping, !tuck, !whispers, !dicio")
+    var fs = require('fs');
+    var files = fs.readdirSync('\commands');
+    var comandos = files.toString().replace(/.js/g, "").replace(/,/g,", !")
+    
+
+    
+
+    client.say(channel, `Os comandos disponíveis são: !${comandos}`)
+    
+
 }

@@ -15,7 +15,7 @@ const prefix = "!"
 
 const botStart = require("./botdiscord.js")
 
-
+const omega = ".js"
 
 // Fim das Consts inicias
 
@@ -32,7 +32,7 @@ const config = {
         username: "Bottisco",
         password: process.env.TWITCH_OAUTH
     },
-    channels: [channelName, logsChannel,]
+    channels: [channelName, logsChannel, "bytter_"]
 }
 
 var client = new tmi.client(config)
@@ -41,6 +41,7 @@ var git = require('git-last-commit');
 
 git.getLastCommit(function(err, commit) {
 });
+
 
 
 client.on("connected", (address, port) => {
@@ -52,6 +53,7 @@ client.on("connected", (address, port) => {
         let ping = Math.floor(Math.round(data*1000))
         client.say(channelName, `Check O bot está online (${ping}ms) | Update: ${commit.subject}`)
         client.say(logsChannel, `Os logs estão online, com ${ping}ms`)
+        client.say("bytter_", `Acabo de ser atualizado com ${ping} ms`)
         })
     })
 
@@ -82,11 +84,12 @@ client.on("chat", (channel, user, message, self) => {
 
     if (self) return;
 
-
+   
   
 
     const args = message.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
+   
     if (!message.startsWith(prefix)) return; 
     try {
        let commandFile = require(`./commands/${cmd}.js`)
@@ -99,7 +102,11 @@ client.on("chat", (channel, user, message, self) => {
 })
 // Fim do Handler
 
-
+ var fs = require('fs');
+    var files = fs.readdirSync('\commands');
+    var comandos = files.toString().replace(/.js/g, '')
+    
+    console.log(comandos.split(" "))
 
 // 7TV Event
 var EventSource = require("eventsource");
