@@ -7,7 +7,7 @@ const tmi = require("tmi.js");
 const { listenerCount } = require('tmi.js/lib/events');
 const { channel } = require('tmi.js/lib/utils');
 
-const channelName = "ameliebtw_" 
+const channelName = "ameliebluie" 
 
 const logsChannel = "bottisco"
 
