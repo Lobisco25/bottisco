@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@indot/rainbowvis": "^1.0.2",
     "axios": "^0.26.0",
     "discord.js": "^13.6.0",
     "dotenv": "^14.3.2",
@@ -25,5 +26,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }

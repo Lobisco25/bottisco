@@ -2,6 +2,8 @@
 
 require('dotenv').config();
 
+
+
 const axios = require('axios')
 const tmi = require("tmi.js");
 const { listenerCount } = require('tmi.js/lib/events');
@@ -14,8 +16,6 @@ const logsChannel = "bottisco"
 const prefix = "!"
 
 const botStart = require("./botdiscord.js")
-
-const omega = ".js"
 
 // Fim das Consts inicias
 
@@ -82,7 +82,14 @@ client.on("raided", (channel, username, viewers) => {
 client.on("chat", (channel, user, message, self) => {
     
 
-    if (self) return;
+
+
+
+
+    if (self) {
+        return;
+    }
+
 
    
   
