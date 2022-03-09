@@ -161,6 +161,13 @@ source2.addEventListener("update", (e) => {
     let data = JSON.parse(e.data)
     if(data.action == "ADD" ){
         client.say(channelName, `${data.actor} está testando o evento da 7tv, pra isso ele adicionou o ${data.name}, por favor ignore FeelsOkayMan`)
+        fs.writeFile('/Users/joe/test.txt', data.name, err => {
+            if (err) {
+              console.error(err)
+              return
+            }
+            //file written successfully
+          })
     }
     if(data.action == "REMOVE"){
         client.say(channelName, `${data.actor} está testando o evento da 7tv, pra isso ele tirou o ${data.name}, por favor ignore FeelsOkayMan`)
