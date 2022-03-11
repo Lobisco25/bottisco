@@ -3,7 +3,6 @@
 require('dotenv').config();
 
 
-
 const axios = require('axios')
 const tmi = require("tmi.js");
 const { listenerCount } = require('tmi.js/lib/events');
@@ -161,6 +160,15 @@ source2.addEventListener("update", (e) => {
     let data = JSON.parse(e.data)
     if(data.action == "ADD" ){
         client.say(channelName, `${data.actor} está testando o evento da 7tv, pra isso ele adicionou o ${data.name}, por favor ignore FeelsOkayMan`)
+        fs.appendFile("emotes7tv.txt", `${data.name}
+         `, (err) =>{
+            if (err) {
+                console.log(err)
+            }
+            else {
+                fs.readFileSync("emotes7tv.txt")
+            }
+        } )
     }
     if(data.action == "REMOVE"){
         client.say(channelName, `${data.actor} está testando o evento da 7tv, pra isso ele tirou o ${data.name}, por favor ignore FeelsOkayMan`)
