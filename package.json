@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@indot/rainbowvis": "^1.0.2",
+    "7tv": "^0.0.4",
     "axios": "^0.26.0",
     "discord.js": "^13.6.0",
     "dotenv": "^14.3.2",

@@ -7,8 +7,9 @@ const axios = require('axios')
 const tmi = require("tmi.js");
 const { listenerCount } = require('tmi.js/lib/events');
 const { channel } = require('tmi.js/lib/utils');
-
+const fs = require('fs')
 const channelName = "ameliebluie" 
+
 
 const logsChannel = "bottisco"
 
@@ -38,8 +39,7 @@ var client = new tmi.client(config)
 client.connect() 
 var git = require('git-last-commit');
 
-git.getLastCommit(function(err, commit) {
-});
+
 
 
 
@@ -50,9 +50,8 @@ client.on("connected", (address, port) => {
     client.ping().then(function(data) {
         git.getLastCommit(function(err, commit) {
         let ping = Math.floor(Math.round(data*1000))
-        client.say(channelName, `Check O bot está online (${ping}ms) | Update: ${commit.subject}`)
         client.say(logsChannel, `Os logs estão online, com ${ping}ms`)
-        client.say("bytter_", `Acabo de ser atualizado com ${ping} ms`)
+        
         })
     })
 
@@ -64,10 +63,11 @@ client.on("connected", (address, port) => {
 
 
 
+
 //Raid Event
 client.on("raided", (channel, username, viewers) => {
     client.followersonlyoff(channelName)
-    client.say(channelName, "omegas o bot com o emote meli")
+
     client.say(logsChannel, `bottiscoSearch ${username} raidou ${channel} com ${viewers} viewers bottiscoSearch`)
     setTimeout(function(){
         client.followersonly(channelName, 0)
@@ -91,6 +91,21 @@ client.on("chat", (channel, user, message, self) => {
         return;
     }
 
+    if(message.startsWith("oi") && message.includes("bottisco")) {
+        axios({
+        method: "GET",
+        url: `https://api.7tv.app/v2/users/ameliebtw_/emotes`,
+        validateStatus: () => true,
+        }).then((res) => {
+            const rNum = Math.floor(Math.random() * 100)
+            const randomEmote = res.data[rNum].name
+    
+            client.say(channel, `oiii ${user.username} ${randomEmote}`)
+    
+        })
+  
+    }
+
 
    
   
@@ -110,11 +125,7 @@ client.on("chat", (channel, user, message, self) => {
 })
 // Fim do Handler
 
- var fs = require('fs');
-    var files = fs.readdirSync('\commands');
-    var comandos = files.toString().replace(/.js/g, '')
-    
-    console.log(comandos.split(" "))
+
 
 // 7TV Event
 var EventSource = require("eventsource");
@@ -157,26 +168,29 @@ source.addEventListener("update", (e) => {
 // Fim do 7TV event
 
 
+
 // Logs
 client.on("messagedeleted", (channel, username, deletedMessage, userstate) => {
-    if (channel === channelName) { 
     client.say(logsChannel, `pajaCmon Uma mensagem de @${username} foi deletada: "${deletedMessage}" MODS`)
-    }
+    
 });
 
 client.on("timeout", (channel, username, reason, duration, userstate, deletedMessage) => {
-    if (channel === channelName) {
+    
     client.say(logsChannel, `peepoPolice @${username} tomou um timeout de ${duration} segundos. bottiscoMODS`)
-    }
+    
 })
 
 client.on("ban", (channel, username, reason, userstate) => {
-    if (channel === channelName) {
+    
     client.say(logsChannel, `bottiscoMODS O usuário @${username} foi banido do chat. bottiscoMODS`)
-    }
+    
     
 })
 
 //Fim dos logs 
 
 
+
+  
+  
