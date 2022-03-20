@@ -144,7 +144,7 @@ client.on("chat", (channel, user, message, self) => {
                     const intervalo = Date.now(res.data.data[0].created_at)
 
                     if(intervalo < 86400 ) {
-                        client.ban(channelName, s2)
+                        client.ban(channelName, s2, "Automatizado pelo Bottisco: Usuário com menos de 1 dia de existência")
                     }
             
             
