@@ -9,6 +9,12 @@ const { listenerCount } = require('tmi.js/lib/events');
 const { channel } = require('tmi.js/lib/utils');
 const fs = require('fs')
 const channelName = "ameliebluie" 
+const TwitchApi = require("node-twitch").default;
+
+const twitchA = new TwitchApi({
+	client_id: "ycvncawvxd627crcz1beodg6g0t7z3",
+	client_secret: process.env.SECRET_API
+});
 
 
 const logsChannel = "bottisco"
@@ -38,7 +44,6 @@ const config = {
 var client = new tmi.client(config)
 client.connect() 
 var git = require('git-last-commit');
-
 
 
 
@@ -87,6 +92,8 @@ client.on("chat", (channel, user, message, self) => {
 
 
 
+
+
     if (self) {
         return;
     }
@@ -113,6 +120,41 @@ client.on("chat", (channel, user, message, self) => {
     const args = message.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
    
+
+    if(user.username == "streamelements") {
+        if(message.startsWith("Obrigada") && message.endsWith("emotes")) {
+        
+
+            var s1 = args[2];
+            var s2 = s1.substring(1);
+    
+            axios({
+                method: "GET",
+                url: `https://api.twitch.tv/helix/users?login=${s2}`,
+                validateStatus: () => true,
+                headers: { 
+                    
+                    'Authorization': 'Bearer osqwzy102h7hk19ajgmdrrn7c8t3yq',
+                    'Client-Id': 'ycvncawvxd627crcz1beodg6g0t7z3'
+        
+        
+                }
+                }).then((res) => {
+                
+                    const intervalo = Date.now(res.data.data[0].created_at)
+
+                    if(intervalo < 86400 ) {
+                        client.ban(channelName, s2)
+                    }
+            
+            
+            }) 
+            
+    
+        }
+    }
+
+
     if (!message.startsWith(prefix)) return; 
     try {
        let commandFile = require(`./commands/${cmd}.js`)
