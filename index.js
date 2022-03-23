@@ -143,7 +143,7 @@ client.on("chat", (channel, user, message, self) => {
                 
                     const intervalo = Date.now(res.data.data[0].created_at)
 
-                    if(intervalo < 86400 ) {
+                    if(intervalo < 86400000 ) {
                         client.ban(channelName, s2, "Automatizado pelo Bottisco: Usuário com menos de 1 dia de existência")
                     }
             
@@ -176,35 +176,16 @@ source.addEventListener("update", (e) => {
     let data = JSON.parse(e.data)
     if(data.action == "ADD" ){
         client.say(channelName, `@${data.actor} adicionou ${data.name} no 7TV`)
-        fs.appendFile("emotes7tv.txt", `${data.name} \n`, (err) =>{
-            if (err) {
-                console.log(err)
-            }
-            else {
-                fs.readFileSync("emotes7tv.txt")
-            }
-        } )
+        
 
     }
     if(data.action == "REMOVE"){
         client.say(channelName, `${data.actor} removeu o ${data.name} na 7TV`)
-        replace({
-            regex: data.name,
-            replacement: '',
-            paths: ['./emotes7tv.txt'],
-            recursive: false,
-            silent: false,
-          });
+       
     }
     if(data.action == "UPDATE"){
         client.say(channelName, `${data.actor} mudou o nome de ${data.emote.name} para ${data.name} na 7TV`)
-        replace({
-            regex: data.emote.name,
-            replacement: data.name,
-            paths: ['./emotes7tv.txt'],
-            recursive: false,
-            silent: false,
-          });
+        
     }
 }, false);
 // Fim do 7TV event
@@ -224,7 +205,6 @@ client.on("timeout", (channel, username, reason, duration, userstate, deletedMes
 })
 
 client.on("ban", (channel, username, reason, userstate) => {
-    
     client.say(logsChannel, `bottiscoMODS O usuário @${username} foi banido do chat. bottiscoMODS`)
     
     
