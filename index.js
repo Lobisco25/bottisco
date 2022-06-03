@@ -48,21 +48,7 @@ var git = require('git-last-commit');
 
 
 
-client.on("connected", (address, port) => {
 
-    
-    
-    client.ping().then(function(data) {
-        git.getLastCommit(function(err, commit) {
-        let ping = Math.floor(Math.round(data*1000))
-        client.say(logsChannel, `Os logs estão online, com ${ping}ms`)
-        
-        })
-    })
-
-    botStart()
-
-})
 
 //Fim da Conexão
 
