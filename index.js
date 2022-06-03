@@ -42,7 +42,7 @@ const config = {
 }
 
 var client = new tmi.client(config)
-client.connect() 
+
 var git = require('git-last-commit');
 
 
